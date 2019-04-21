@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS employee;
+
+CREATE TABLE employee (
+  empId INTEGER(10) NOT NULL,
+  empName VARCHAR(100) NOT NULL,
+  designation VARCHAR(100) NOT NULL,
+  salary DOUBLE NOT NULL
+);

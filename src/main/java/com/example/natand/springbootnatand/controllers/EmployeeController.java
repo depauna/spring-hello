@@ -5,6 +5,10 @@ import java.util.List;
 
 import com.example.natand.springbootnatand.models.Employee;
 
+import com.example.natand.springbootnatand.models.User;
+import com.example.natand.springbootnatand.services.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -13,30 +17,58 @@ import org.springframework.web.bind.annotation.*;
 public class EmployeeController {
 
     private List<Employee> employees = createList();
+    @Autowired
+    private EmployeeService employeeService;
+
 
     @RequestMapping(produces = "application/json")
     public List<Employee> firstPage() {
-        return employees;
+        // return employees;
+        return employeeService.getAllEmployees();
     }
 
-    @DeleteMapping(path = { "/{id}" })
-    public Employee delete(@PathVariable("id") int id) {
-        Employee deletedEmp = null;
-        for (Employee emp : employees) {
-            if (emp.getEmpId().equals(id)) {
-                employees.remove(emp);
-                deletedEmp = emp;
-                break;
-            }
-        }
-        return deletedEmp;
+    @GetMapping(produces = "application/json")
+    @RequestMapping({"/{id}"})
+    public Employee get(@PathVariable("id") int id) {
+//        Employee getEmp = null;
+//        for (Employee emp : employees) {
+//            if (emp.getEmpId() == id) {
+//                getEmp = emp;
+//                break;
+//            }
+//        }
+//        return getEmp;
+        return employeeService.getEmployeeById(id);
     }
 
-    @PostMapping
+    @DeleteMapping(path = {"/{id}"})
+    public void delete(@PathVariable("id") int id) {
+//        Employee deletedEmp = null;
+//        for (Employee emp : employees) {
+//            if (emp.getEmpId() == id) {
+//                employees.remove(emp);
+//                deletedEmp = emp;
+//                break;
+//            }
+//        }
+//        return deletedEmp;
+        employeeService.deleteEmployee(id);
+    }
+
+    @PostMapping(
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = "application/json")
     public Employee create(@RequestBody Employee user) {
-        employees.add(user);
+        // employees.add(user);
         System.out.println(employees);
+        employeeService.insertEmployee(user);
         return user;
+    }
+
+    @GetMapping(produces = "application/json")
+    @RequestMapping({"/validateLogin"})
+    public User validateLogin() {
+        return new User("User successfully authenticated");
     }
 
     private static List<Employee> createList() {
@@ -44,13 +76,13 @@ public class EmployeeController {
         Employee emp1 = new Employee();
         emp1.setName("Natan");
         emp1.setDesignation("DevOps Engineer");
-        emp1.setEmpId("1");
+        emp1.setEmpId(1);
         emp1.setSalary(3000);
 
         Employee emp2 = new Employee();
         emp2.setName("Marc");
         emp2.setDesignation("Developer");
-        emp2.setEmpId("2");
+        emp2.setEmpId(2);
         emp2.setSalary(2100);
 
         tempEmployees.add(emp1);

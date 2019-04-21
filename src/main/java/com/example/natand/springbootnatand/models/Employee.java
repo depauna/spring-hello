@@ -1,7 +1,7 @@
 package com.example.natand.springbootnatand.models;
 
 public class Employee {
-    private String empId;
+    private int empId;
     private String name;
     private String designation;
     private double salary;
@@ -33,12 +33,17 @@ public class Employee {
         this.salary = salary;
     }
 
-    public String getEmpId() {
+    public int getEmpId() {
         return empId;
     }
 
-    public void setEmpId(String empId) {
+    public void setEmpId(int empId) {
         this.empId = empId;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee [empId=" + empId + ", empName=" + name + ", designation=" + designation + ", salary=" + salary + "]";
     }
 
     @Override
@@ -46,7 +51,6 @@ public class Employee {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((designation == null) ? 0 : designation.hashCode());
-        result = prime * result + ((empId == null) ? 0 : empId.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         long temp;
         temp = Double.doubleToLongBits(salary);
@@ -67,11 +71,6 @@ public class Employee {
             if (other.designation != null)
                 return false;
         } else if (!designation.equals(other.designation))
-            return false;
-        if (empId == null) {
-            if (other.empId != null)
-                return false;
-        } else if (!empId.equals(other.empId))
             return false;
         if (name == null) {
             if (other.name != null)
