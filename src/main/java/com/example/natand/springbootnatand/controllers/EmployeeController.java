@@ -23,45 +23,27 @@ public class EmployeeController {
 
     @RequestMapping(produces = "application/json")
     public List<Employee> firstPage() {
-         return employees;
-//        return employeeService.getAllEmployees();
+//         return employees;
+        return employeeService.getAllEmployees();
     }
 
     @GetMapping(produces = "application/json")
     @RequestMapping({"/{id}"})
     public Employee get(@PathVariable("id") int id) {
-        Employee getEmp = null;
-        for (Employee emp : employees) {
-            if (emp.getEmpId() == id) {
-                getEmp = emp;
-                break;
-            }
-        }
-        return getEmp;
-//        return employeeService.getEmployeeById(id);
+        return employeeService.getEmployeeById(id);
     }
 
     @DeleteMapping(path = {"/{id}"})
     public void delete(@PathVariable("id") int id) {
-        Employee deletedEmp = null;
-        for (Employee emp : employees) {
-            if (emp.getEmpId() == id) {
-                employees.remove(emp);
-                deletedEmp = emp;
-                break;
-            }
-        }
-//        return deletedEmp;
-//        employeeService.deleteEmployee(id);
+        employeeService.deleteEmployee(id);
     }
 
     @PostMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = "application/json")
     public Employee create(@RequestBody Employee user) {
-         employees.add(user);
         System.out.println(employees);
-//        employeeService.insertEmployee(user);
+        employeeService.insertEmployee(user);
         return user;
     }
 

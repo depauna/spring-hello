@@ -18,7 +18,6 @@ public class SpringBootNatandApplication {
 	EmployeeService employeeService;
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBootNatandApplication.class, args);
 		ApplicationContext applicationContext = SpringApplication.run(SpringBootNatandApplication.class, args);
 		EmployeeService employeeService = applicationContext.getBean(EmployeeService.class);
 
