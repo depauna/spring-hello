@@ -6,7 +6,6 @@ import java.util.List;
 import com.example.natand.springbootnatand.models.Employee;
 
 import com.example.natand.springbootnatand.models.User;
-import com.example.natand.springbootnatand.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -18,13 +17,11 @@ public class EmployeeController {
 
     private List<Employee> employees = createList();
     @Autowired
-    private EmployeeService employeeService;
 
 
     @RequestMapping(produces = "application/json")
     public List<Employee> firstPage() {
          return employees;
-//        return employeeService.getAllEmployees();
     }
 
     @GetMapping(produces = "application/json")
@@ -38,7 +35,6 @@ public class EmployeeController {
             }
         }
         return getEmp;
-//        return employeeService.getEmployeeById(id);
     }
 
     @DeleteMapping(path = {"/{id}"})
@@ -51,8 +47,6 @@ public class EmployeeController {
                 break;
             }
         }
-//        return deletedEmp;
-//        employeeService.deleteEmployee(id);
     }
 
     @PostMapping(
@@ -61,7 +55,6 @@ public class EmployeeController {
     public Employee create(@RequestBody Employee user) {
          employees.add(user);
         System.out.println(employees);
-//        employeeService.insertEmployee(user);
         return user;
     }
 
