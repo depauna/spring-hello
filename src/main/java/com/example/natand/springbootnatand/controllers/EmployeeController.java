@@ -10,9 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200", "employee-management-frontend-service"})
 @RestController
-@RequestMapping({"/employees"})
+@RequestMapping({"/"})
 public class EmployeeController {
 
     private List<Employee> employees = createList();
