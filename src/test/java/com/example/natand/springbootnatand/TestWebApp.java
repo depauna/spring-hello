@@ -26,7 +26,7 @@ public class TestWebApp extends SpringBootNatandApplicationTests {
 
     @Test
     public void testEmployee() throws Exception {
-        mockMvc.perform(get("/employees/1")).andExpect(status().isOk())
+        mockMvc.perform(get("/1")).andExpect(status().isOk())
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
                 .andExpect(jsonPath("$.name").value("Natan")).andExpect(jsonPath("designation").value("DevOps Engineer"))
                 .andExpect(jsonPath("$.empId").value("1")).andExpect(jsonPath("$.salary").value(3000));
