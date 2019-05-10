@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = {"http://localhost:4200", "*"})
 @RestController
-@RequestMapping({"/"})
+@RequestMapping(value= {"${mapping}"})
 public class EmployeeController {
 
     private List<Employee> employees = createList();
