@@ -1,3 +1,3 @@
 # spring-boot-natand
 
-Hello world Sping Boot application.
+Hello world Spring Boot application.
