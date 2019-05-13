@@ -1,6 +1,6 @@
 FROM depauna/maven:latest as builder
 ADD . employee-management/
-WORKDIR employee-management
+WORKDIR /employee-management
 RUN mvn package
 RUN mv target/spring-boot-natand*.jar /employee-management.jar
 
