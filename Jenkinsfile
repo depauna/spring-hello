@@ -13,7 +13,7 @@ pipeline {
         """
       }
     }
-    stage("Push') {
+    stage('Push') {
       steps {
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: '<username>', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
           sh """
