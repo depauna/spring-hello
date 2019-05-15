@@ -7,7 +7,7 @@ replicaCount: 1
 image:
   repository: depauna/employee-management-spring
   tag: latest
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 service:
   type: ClusterIP
