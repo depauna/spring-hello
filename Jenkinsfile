@@ -9,7 +9,7 @@ pipeline {
     stage('Build') {
       steps {
         sh """
-          docker build . -t ${docker_username}/${img_name}:${img_tag}
+          docker build . -t ${dockerhub_username}/${img_name}:${img_tag}
         """
       }
     }
@@ -18,7 +18,7 @@ pipeline {
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: '<username>', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
           sh """
             docker login -u ${USERNAME} -p ${PASSWORD}
-            docker push ${docker_username}/${img_name}:${img_tag}
+            docker push ${dockerhub_username}/${img_name}:${img_tag}
             docker logout
           """
         }
