@@ -25,5 +25,12 @@ pipeline {
         }
       }
     }
+    stage('Deploy') {
+      steps {
+        sh """
+          helm upgrade --wait --install -f user30-backend.yaml --namespace user30 --tiller-namespace user30 user30-employee-management-backend ../kubemania/employee-management-backend/
+        """
+      }
+    }
   }
 }
