@@ -1,4 +1,4 @@
-def dockerhub_username = '<dockerhub_username>'
+def dockerhub_username = 'depauna'
 def img_name = 'spring-hello'
 def img_tag = 'latest'
 def namespace = 'depauna'
@@ -13,7 +13,7 @@ pipeline {
         """
       }
     }
-    stage("Push') {
+    stage('Push') {
       steps {
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: '<username>', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
           sh """
