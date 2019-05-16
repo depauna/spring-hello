@@ -29,7 +29,7 @@ pipeline {
     stage('Deploy') {
       steps {
         sh """
-          helm upgrade --wait --install -f user30-frontend.yaml --set image.tag=${img_tag} --namespace user30 --tiller-namespace user30 user30-employee-management-frontend ../../kubemania/employee-management-frontend/
+          helm upgrade --wait --install -f user30-backend.yaml --set image.tag=${img_tag} --namespace user30 --tiller-namespace user30 user30-employee-management-backend ../kubemania/employee-management-backend/
         """
       }
     }
