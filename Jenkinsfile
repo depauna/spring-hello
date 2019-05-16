@@ -4,7 +4,7 @@ pipeline {
     dockerhub_username = '<dockerhub_username>'
     img_name = 'spring-hello'
     img_tag = sh (returnStdout: true, script: 'git log -1 --pretty=%h').trim()
-    namespace = '<uername>'
+    username = '<username>'
   }
   stages {
     stage('Build') {
@@ -29,7 +29,7 @@ pipeline {
     stage('Deploy') {
       steps {
         sh """
-          helm upgrade --wait --install -f <username>-backend.yaml --set image.tag=${img_tag} --namespace <username> --tiller-namespace <username> <username>-employee-management-backend ../kubemania/employee-management-backend/
+          helm upgrade --wait --install -f ${username}-backend.yaml --set image.tag=${img_tag} --namespace ${username} --tiller-namespace ${username} ${username}-employee-management-backend ../kubemania/employee-management-backend/
         """
       }
     }
