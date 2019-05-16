@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: depauna/employee-management-spring
+  repository: depauna/spring-hello
   tag: latest
   pullPolicy: Always
 
