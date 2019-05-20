@@ -19,7 +19,7 @@ pipeline {
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: '<username>', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
           sh """
             echo ${WORKSPACE}
-            docker login -u ${USERNAME} -p ${PASSWORD}
+            docker login -u "${USERNAME}" -p "${PASSWORD}"
             docker push ${dockerhub_username}/${img_name}:${img_tag}
             docker logout
           """
