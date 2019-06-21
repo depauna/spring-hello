@@ -1,0 +1,5 @@
+openshift.withCluster( 'openshift' ) {
+    openshift.withProject( 'devops-playground' ) {
+        echo "Hello from project ${openshift.project()} in cluster ${openshift.cluster()}"
+    }
+}
