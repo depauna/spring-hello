@@ -1,5 +1,16 @@
-openshift.withCluster( 'openshift' ) {
-    openshift.withProject( 'devops-playground' ) {
-        echo "Hello from project ${openshift.project()} in cluster ${openshift.cluster()}"
+pipeline {
+    agent none
+    stages {
+        stage('Hello world') {
+            steps {
+                script {
+                    openshift.withCluster( 'openshift' ) {
+                        openshift.withProject( 'devops-playground' ) {
+                            echo "Hello from project ${openshift.project()} in cluster ${openshift.cluster()}"
+                        }
+                    }
+                }
+            }
+        }
     }
 }
