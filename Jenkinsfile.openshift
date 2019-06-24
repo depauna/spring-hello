@@ -28,7 +28,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh "maven clean package"
+                sh "mvn clean package"
                 stash name:"jar", includes:"target/spring-boot-natand-0.0.1-SNAPSHOT.war"
             }
         }
