@@ -1,13 +1,36 @@
 pipeline {
-    agent none
+    agent {
+        node {
+            label 'maven'
+        }
+    }
+    options {
+        timeout(time: 5, unit: 'MINUTES')
+    }
     stages {
-        stage('Hello world') {
+        stage('Preamble') {
             steps {
                 script {
                     openshift.withCluster( 'openshift' ) {
-                        openshift.withProject( 'devops-playground' ) {
+                        openshift.withProject( 'myproject' ) {
                             echo "Hello from project ${openshift.project()} in cluster ${openshift.cluster()}"
                         }
+                    }
+                }
+            }
+        }
+    }
+    stage('Build') {
+        steps {
+            script {
+                openshift.withCluster() {
+                    openshift.withProject() {
+                      def builds = openshift.selector("bc", templateName).related('builds')
+                      timeout(5) {
+                          builds.untilEach(1) {
+                              return (it.object().status.phase == "Complete")
+                          }
+                      }
                     }
                 }
             }
