@@ -21,15 +21,15 @@ pipeline {
                 }
             }
         }
+        stage('Checkout') {
+            steps {
+                git url: "https://github.com/depauna/spring-hello.git", branch: "openshift"
+            }
+        }
         stage('Build') {
             steps {
-                stage("Checkout") {
-                    git url: "https://github.com/depauna/spring-hello.git", branch: "openshift"
-                }
-                stage("Build") {
-                    sh "maven clean package"
-                    stash name:"jar", includes:"target/spring-boot-natand-0.0.1-SNAPSHOT.war"
-                }
+                sh "maven clean package"
+                stash name:"jar", includes:"target/spring-boot-natand-0.0.1-SNAPSHOT.war"
             }
         }
     }
