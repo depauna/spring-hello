@@ -1,0 +1,14 @@
+kind: "BuildConfig"
+apiVersion: "v1"
+metadata:
+  name: "maven-sample-pipeline"
+spec:
+  runPolicy: "Serial"
+  source:
+    git:
+      uri: "https://github.com/depauna/spring-hello.git"
+      ref: "openshift"
+  strategy:
+    jenkinsPipelineStrategy:
+      jenkinsfilePath: "Jenkinsfile.openshift"
+      type: JenkinsPipeline
